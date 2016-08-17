@@ -1,7 +1,9 @@
-package rocod.vinebusu;
+package codcivic.vinebusu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import rocod.vinebusu.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package rocod.vinebusu.dto;
+package codcivic.vinebusu;
 
 import org.greenrobot.greendao.annotation.*;
 
@@ -10,11 +10,11 @@ import org.greenrobot.greendao.annotation.*;
 public class RouteDto {
     private String name;
 
-    @Generated(hash = 1599422008)
+    @Generated
     public RouteDto() {
     }
 
-    @Generated(hash = 1745196078)
+    @Generated
     public RouteDto(String name) {
         this.name = name;
     }

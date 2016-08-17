@@ -1,4 +1,4 @@
-package rocod.vinebusu.dto;
+package codcivic.vinebusu;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;

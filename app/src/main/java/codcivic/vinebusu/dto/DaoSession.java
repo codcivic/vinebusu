@@ -17,28 +17,64 @@ import org.greenrobot.greendao.internal.DaoConfig;
  */
 public class DaoSession extends AbstractDaoSession {
 
+    private final DaoConfig agencyDtoDaoConfig;
     private final DaoConfig routeDtoDaoConfig;
+    private final DaoConfig stopDtoDaoConfig;
+    private final DaoConfig tripDtoDaoConfig;
 
+    private final AgencyDtoDao agencyDtoDao;
     private final RouteDtoDao routeDtoDao;
+    private final StopDtoDao stopDtoDao;
+    private final TripDtoDao tripDtoDao;
 
     public DaoSession(Database db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
         super(db);
 
+        agencyDtoDaoConfig = daoConfigMap.get(AgencyDtoDao.class).clone();
+        agencyDtoDaoConfig.initIdentityScope(type);
+
         routeDtoDaoConfig = daoConfigMap.get(RouteDtoDao.class).clone();
         routeDtoDaoConfig.initIdentityScope(type);
 
-        routeDtoDao = new RouteDtoDao(routeDtoDaoConfig, this);
+        stopDtoDaoConfig = daoConfigMap.get(StopDtoDao.class).clone();
+        stopDtoDaoConfig.initIdentityScope(type);
 
+        tripDtoDaoConfig = daoConfigMap.get(TripDtoDao.class).clone();
+        tripDtoDaoConfig.initIdentityScope(type);
+
+        agencyDtoDao = new AgencyDtoDao(agencyDtoDaoConfig, this);
+        routeDtoDao = new RouteDtoDao(routeDtoDaoConfig, this);
+        stopDtoDao = new StopDtoDao(stopDtoDaoConfig, this);
+        tripDtoDao = new TripDtoDao(tripDtoDaoConfig, this);
+
+        registerDao(AgencyDto.class, agencyDtoDao);
         registerDao(RouteDto.class, routeDtoDao);
+        registerDao(StopDto.class, stopDtoDao);
+        registerDao(TripDto.class, tripDtoDao);
     }
     
     public void clear() {
+        agencyDtoDaoConfig.getIdentityScope().clear();
         routeDtoDaoConfig.getIdentityScope().clear();
+        stopDtoDaoConfig.getIdentityScope().clear();
+        tripDtoDaoConfig.getIdentityScope().clear();
+    }
+
+    public AgencyDtoDao getAgencyDtoDao() {
+        return agencyDtoDao;
     }
 
     public RouteDtoDao getRouteDtoDao() {
         return routeDtoDao;
+    }
+
+    public StopDtoDao getStopDtoDao() {
+        return stopDtoDao;
+    }
+
+    public TripDtoDao getTripDtoDao() {
+        return tripDtoDao;
     }
 
 }

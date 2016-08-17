@@ -1,4 +1,4 @@
-package rocod.vinebusu.greendao;
+package codcivic.vinebusu.greendao;
 
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.SmallTest;

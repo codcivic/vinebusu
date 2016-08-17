@@ -1,4 +1,4 @@
-package rocod.vinebusu;
+package codcivic.vinebusu;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
